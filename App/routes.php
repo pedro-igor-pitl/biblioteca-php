@@ -1,18 +1,26 @@
 <?php
-use App\Controller\AlunoController;
+
+use App\Controller\{
+    AlunoController,
+    InicialController
+};
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-switch($url) {
+switch ($url) {
     case '/':
-        echo "página inicial";
-    break;
+        InicialController::index();
+        break;
 
     case '/aluno':
         AlunoController::listar();
-    break;
+        break;
 
     case '/aluno/cadastro':
         AlunoController::cadastro();
-    break;
+        break;
+
+    case '/aluno/delete':
+        AlunoController::delete();
+        break;
 }
