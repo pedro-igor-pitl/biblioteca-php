@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Model\Aluno;
 
-class AlunoController
+class AlunoController extends Controller
 {
     public static function cadastro(): void
     {
+        parent::isProtected();
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $model = new Aluno();
             $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
@@ -29,6 +30,7 @@ class AlunoController
 
     public static function listar(): void
     {
+        parent::isProtected();
         $aluno = new Aluno();
         $lista = $aluno->getAllRows();
 
@@ -39,6 +41,7 @@ class AlunoController
 
     public static function delete(): void
     {
+        parent::isProtected();
         $aluno = new Aluno();
 
         $aluno->delete((int) $_GET['id']);
